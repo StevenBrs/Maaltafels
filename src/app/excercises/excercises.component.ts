@@ -15,15 +15,15 @@ export class ExcercisesComponent implements OnInit {
   
   ngOnInit() {
     let base = this.settings.getBase();
-    this.nr1s = [99,98,97];
+    this.nr1s = [];
     for (let key in this.settings.getBase()) {
-      this.nr1s.push(key);
+      if (this.settings.getBase()[key]) {this.nr1s.push(key);}
     }
   }
 
   public getNr1 ():number {
-    var i:number = Math.round(Math.random());
-    return Math.floor(Math.random()*this.nr1s.length);
+    var i:number = Math.floor(Math.random()*this.nr1s.length);
+    return this.nr1s[i];
   }
 
   public AsIsOrder (a, b) {

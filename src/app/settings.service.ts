@@ -42,4 +42,8 @@ export class SettingsService {
   public setMaxMultiplier (nr:number) {
     this.settings.maxmultiplier = nr;
   }
+
+  public getDevide() {
+    return this.settings.devide;
+  }
 }

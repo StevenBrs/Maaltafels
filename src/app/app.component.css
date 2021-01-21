@@ -1,3 +1,10 @@
 p {
   font-family: Lato;
 }
+
+a {
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+}

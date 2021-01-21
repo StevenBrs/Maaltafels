@@ -1,4 +1,13 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div class="container">
+  <h1>{{title}}</h1>
+
+  <ul>
+    <li><a routerLink = "settings" >Settings</a></li>
+    <li><a routerLink = "excercises" >Oefeningen</a></li>
+    <li><a routerLink = "score" >score</a></li>
+  </ul>
+
+  <router-outlet></router-outlet>
+
+  <app-footer></app-footer>
+</div>

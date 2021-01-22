@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component' ;
 
 import { SettingsService } from './settings.service';
 import { ScoreService } from './score.service';
-
+/*
 import { Routes, RouterModule } from '@angular/router';
 const routes : Routes = [
     { path: '' , redirectTo: 'settings' , pathMatch: 'full' },
@@ -19,9 +19,12 @@ const routes : Routes = [
     { path: 'excercises' , component: ExcercisesComponent},
     { path: 'score' , component: ScoreComponent}
 ];
+*/
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(routes) ],
+//  imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(routes) ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
   declarations: [ AppComponent, HelloComponent, SettingsComponent, ExcercisesComponent, ScoreComponent, FooterComponent ],
   bootstrap:    [ AppComponent ],
   providers: [SettingsService, ScoreService]

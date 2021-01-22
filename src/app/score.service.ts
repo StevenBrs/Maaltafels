@@ -9,13 +9,25 @@ export class ScoreService {
   }
 
   public clearScore() {
-    this.score = {};
+    this.score = {
+      '*': [],
+      '/': []
+    };
   }
   public addScore(type: string, result: boolean) {
+    if (!this.score[type]) { this.score[type] = [] }
     if (result) {
-      //this.score[type]["good"]++;
+      this.score[type]["good"]++;
     } else {
-      //this.score[type]["bad"]++;
+      this.score[type]["bad"]++;
+    }
+  }
+
+  public getScores (type?: string) {
+    if (type) {
+      return this.score[type];
+    } else {
+      return this.score;
     }
   }
 }

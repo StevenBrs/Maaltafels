@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../settings.service';
 import { ScoreService} from '../score.service';
 
-import { Routes, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-excercises',
@@ -20,7 +20,7 @@ export class ExcercisesComponent implements OnInit {
   solution: string ="";
   countTotal: number;
 
-  constructor(public settings: SettingsService, public score: ScoreService) {}
+  constructor(public settings: SettingsService, public score: ScoreService, public router: Router) {}
   
   ngOnInit() {
     this.createNr1s();
@@ -59,7 +59,7 @@ export class ExcercisesComponent implements OnInit {
       if (this.excercises.length > 1) {
         this.excercises.splice(0,1);
       } else {
-        //nav away
+        this.router.navigateByUrl('/score');
       }
     //}
   }

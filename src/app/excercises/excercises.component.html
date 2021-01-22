@@ -1,5 +1,38 @@
 <h2>Oefeningen</h2>
 
+<div class="row">
+  <div class="col">
+    {{this.getExcerciseDisplay()}}
+    <br />
+    <input type="text" value="{{answer}}" />
+    <br />
+    <input type="text" value="{{check}} - {{solution}}" />  
+  </div>
+  <div class="col">
+    <div class="container">
+      <div class="row pm-2" *ngFor="let b of [0,1,2]">
+        <div class="col" *ngFor="let a of [1,2,3]">
+          <button class="btn btn-secondary" (click)="addAnswer(a+b*3)">{{a+b*3}}</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary" (click)="rmAnswer()">&lt;</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-secondary" (click)="addAnswer(0)">0</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-secondary" (click)="checkAnswer()">&gt;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br /><br /><br />
+
+<button (click)="ngOnInit()">init</button>
 - <span *ngFor="let nr1 of nr1s">{{nr1}} </span>
 <br />
 - <span *ngFor="let nr2 of nr2s">{{nr2}} </span>

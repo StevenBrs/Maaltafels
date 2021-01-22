@@ -9,8 +9,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ExcercisesComponent } from './excercises/excercises.component';
 import { ScoreComponent } from './score/score.component';
 
-import { Routes, RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component' ;
+import { Routes, RouterModule } from '@angular/router';
 const routes : Routes = [
     { path: '' , redirectTo: 'settings' , pathMatch: 'full' },
     { path: 'settings' , component: SettingsComponent },

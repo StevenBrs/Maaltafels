@@ -46,4 +46,10 @@ export class SettingsService {
   public getDevide() {
     return this.settings.devide;
   }
+  public setDevide(state:boolean) {
+    this.settings.devide = state;
+  }
+  public toggleDevide() {
+    this.settings.devide = !this.settings.devide;
+  }
 }

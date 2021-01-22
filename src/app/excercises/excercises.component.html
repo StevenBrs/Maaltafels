@@ -1,8 +1,15 @@
 <h2>Oefeningen</h2>
 
-- <span *ngFor="let nr of settings.getBase() | keyvalue: AsIsOrder">{{nr.key}}</span>
+- <span *ngFor="let nr1 of nr1s">{{nr1}} </span>
 <br />
-- <span *ngFor="let nr of nr1s">{{nr}}</span>
+- <span *ngFor="let nr2 of nr2s">{{nr2}} </span>
 <br />
-
-a: {{this.getNr1()}}
+- <span *ngFor="let operator of operators">{{operator}} </span>
+<br />
+<br />
+Oefeningskes:
+<ul>
+  <li *ngFor="let exc of excercises">
+    {{exc}}
+  </li>
+</ul>

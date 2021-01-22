@@ -29,8 +29,9 @@
 		<div class="col-1"></div>
 		<div class="col-9">
 			<div class="custom-control custom-switch">
+				<input type="checkbox" class="custom-control-input" id="customSwitch1" [checked]="settings.getDevide()" (change)="settings.toggleDevide()">
 				<label class="custom-control-label" for="customSwitch1">Ook gedeeld door</label>
-				<input type="checkbox" class="custom-control-input" id="customSwitch1" checked="{{this.settings.getDevide()}}">
     </div>
-			</div>
-		</div>
+  </div>
+
+</div>

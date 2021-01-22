@@ -1,15 +1,24 @@
 <h2>Oefeningen</h2>
 
 <div class="row">
-  <div class="col">
-    {{this.getExcerciseDisplay()}}
+  <div class="col text-center">
+    <div class="alert alert-primary" style="font-size: 2em; font-weight: bold;">
+      {{this.getExcerciseDisplay()}}
+    </div>
     <br />
-    <input type="text" value="{{answer}}" />
-    <br />
-    <input type="text" value="{{check}} - {{solution}}" />  
+    <div class="alert alert-{{check ? 'success' : 'danger'}}" [innerHTML]="solution" style="font-size: 1.5em;" ng-hide="solution.length == 0">
+      {{solution.length}} 
+    </div>
   </div>
   <div class="col">
     <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-secondary" style="font-size: 2em;">
+            &nbsp;{{answer}}
+          </div>
+        </div>
+      </div>
       <div class="row pm-2" *ngFor="let b of [0,1,2]">
         <div class="col" *ngFor="let a of [1,2,3]">
           <button class="btn btn-secondary" (click)="addAnswer(a+b*3)">{{a+b*3}}</button>
@@ -29,20 +38,23 @@
     </div>
   </div>
 </div>
+<div class="row">&nbsp;</div>
+<div class="row">
+  <div class="col">
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: {{getProgress()}}%">
+        {{getCountDone()}} / {{getCountTotal()}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br /><br />
+
+<a [routerLink]="['/score']">score</a>
 
 <br /><br /><br /><br /><br />
 
 <button (click)="ngOnInit()">init</button>
-- <span *ngFor="let nr1 of nr1s">{{nr1}} </span>
-<br />
-- <span *ngFor="let nr2 of nr2s">{{nr2}} </span>
-<br />
-- <span *ngFor="let operator of operators">{{operator}} </span>
-<br />
-<br />
-Oefeningskes:
-<ul>
-  <li *ngFor="let exc of excercises">
-    {{exc}}
-  </li>
-</ul>
+
+<br /><br /><br /><br /><br />

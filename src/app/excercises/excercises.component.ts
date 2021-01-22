@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { concat } from 'rxjs/operators';
 import { SettingsService } from '../settings.service';
+import { ScoreService} from '../score.service';
 
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-excercises',
@@ -15,17 +16,22 @@ export class ExcercisesComponent implements OnInit {
   operators:string [];
   excercises:string [];
   answer:string = "";
-  check: Boolean;
+  check: boolean;
   solution: string ="";
+  countTotal: number;
 
-  constructor(public settings: SettingsService) {}
+  constructor(public settings: SettingsService, public score: ScoreService) {}
   
   ngOnInit() {
-    
     this.createNr1s();
     this.createNr2s();
     this.createOperators();
     this.createExcercises();
+    this.countTotal = this.excercises.length;
+
+    this.score.clearScore();
+    this.answer = "";
+    this.solution = "";
   }
 
   public getExcercise() {
@@ -35,22 +41,45 @@ export class ExcercisesComponent implements OnInit {
     return this.getExcercise().replace('*', ' x ').replace('/', ' : ');
   }
   public addAnswer (a) {
-    this.answer += String(a);
+    if (this.answer.length < 3) {
+      this.answer += String(a);
+    }
   }
   public rmAnswer () {
     this.answer = "";
   }
   public checkAnswer() {
-    this.check = (eval(this.getExcercise()) == this.answer);
-    this.solution = this.getExcerciseDisplay() + " = " + eval(this.getExcercise());
-    this.answer = "";
-    if (this.excercises.length > 1) {
-      this.excercises.splice(0,1);
-    } else {
-      //nav away
-    }
+    //if (this.answer) {
+      this.check = (eval(this.getExcercise()) == this.answer);
+      var wrong = !this.check ? '&nbsp;<del>' + this.answer + '</del>&nbsp;' : "";
+      this.solution = this.getExcerciseDisplay() + " = " + wrong + " <strong>" + eval(this.getExcercise()) + "</strong>";
+      this.score.addScore(this.getOperator(this.getExcercise()), this.check);
+      console.log(this.score.score);
+      this.answer = "";
+      if (this.excercises.length > 1) {
+        this.excercises.splice(0,1);
+      } else {
+        //nav away
+      }
+    //}
+  }
+  
+  public getCountTotal() {
+    return this.countTotal;
+  }
+  public getCountTodo () {
+    return this.excercises.length;
+  }
+  public getCountDone () {
+    return this.getCountTotal() - this.getCountTodo();
+  }
+  public getProgress () {
+    return Math.round(this.getCountDone() / this.getCountTotal() * 100);
   }
 
+  private getOperator(exc: String) {
+    return exc.match('[0-9]+(.)[0-9]+')[1];
+  }
   private createNr1s () {
     this.nr1s = [];
     for (let key in this.settings.getBase()) {

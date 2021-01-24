@@ -2,32 +2,43 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ScoreService {
-  score = {};
+  results = {};
 
   constructor() {
-    this.clearScore();
   }
 
   public clearScore() {
-    this.score = {
-      '*': [],
-      '/': []
-    };
+    this.results = {};
   }
-  public addScore(type: string, result: boolean) {
-    if (!this.score[type]) { this.score[type] = [] }
-    if (result) {
-      this.score[type]["good"]++;
-    } else {
-      this.score[type]["bad"]++;
-    }
+  public addScore(exc: string, operator: string, answer: string, check: boolean) {
+    this.results[exc] = {'answer': answer, 'check': check, 'operator': operator};
+    console.log(this.results);
   }
 
-  public getScores (type?: string) {
-    if (type) {
-      return this.score[type];
+  public getResults () {
+    return this.results;
+  }
+  public getScore(type?: string) {
+    var total:number = 0;
+    var correct: number = 0;
+    if (typeof type !== 'undefined') {
+      for (let result of Object.keys(this.getResults())) {
+        if (this.results[result].operator == type) {
+          total++;
+          if (this.results[result].check) {
+            correct++;
+          }
+        }
+      }
     } else {
-      return this.score;
+      total = Object.keys(this.getResults()).length;
+      var correct: number = 0;
+      for (let result of Object.keys(this.getResults())) {
+        if (this.results[result].check) {
+          correct++;
+        }
+      }
     }
+    return correct + " / " + total;
   }
 }

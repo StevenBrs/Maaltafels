@@ -53,8 +53,9 @@ export class ExcercisesComponent implements OnInit {
       this.check = (eval(this.getExcercise()) == this.answer);
       var wrong = !this.check ? '&nbsp;<del>' + this.answer + '</del>&nbsp;' : "";
       this.solution = this.getExcerciseDisplay() + " = " + wrong + " <strong>" + eval(this.getExcercise()) + "</strong>";
-      this.score.addScore(this.getOperator(this.getExcercise()), this.check);
-      console.log(this.score.score);
+
+      this.score.addScore(this.getExcercise(), this.getOperator(this.getExcercise()), this.answer, this.check);
+      
       this.answer = "";
       if (this.excercises.length > 1) {
         this.excercises.splice(0,1);
@@ -99,6 +100,7 @@ export class ExcercisesComponent implements OnInit {
 
   private createExcercises () {
     this.excercises = [];
+    this.score.clearScore();
     for (let o of this.operators) {
       for (let nr1 of this.nr1s) {
         for (let nr2 of this.nr2s) {

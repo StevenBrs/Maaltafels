@@ -11,6 +11,8 @@ export class ScoreComponent implements OnInit {
   constructor(public score: ScoreService) { }
 
   ngOnInit() {
+    console.log(this.score);
   }
+
 
 }
